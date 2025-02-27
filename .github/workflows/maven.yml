@@ -14,4 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: SSw4rtzz/academy/.github/actions/maven_build@master
+
     - uses: SSw4rtzz/academy/.github/actions/docker_build@master
+      with:
+        path_dockerfile: src/main/docker/Dockerfile.jvm
+        image_name: academy
+        tag_name: v1

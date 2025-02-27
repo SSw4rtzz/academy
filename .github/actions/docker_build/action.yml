@@ -22,7 +22,7 @@ runs:
       shell: bash
 
     - name: Build app image
-      run: docker build . --file ${{ inputs.path_dockerfile }} --tag ${{ inputs.image_name }} ${{ env.TAG }}
+      run: docker build . --file ${{ inputs.path_dockerfile }} --tag ${{ inputs.image_name }}:${{ env.TAG }}
       shell: bash
 
     - name: List images

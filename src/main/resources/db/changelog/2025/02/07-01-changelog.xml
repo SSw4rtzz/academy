@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1738924915120-1" author="CTW04133">
+        <createTable tableName="t_booking">
+            <column name="rack_id" type="char(36)"/>
+            <column name="requester_id" type="char(36)"/>
+            <column name="book_from" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_to" type="timestamp"/>
+            <column defaultValueComputed="now()" name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="modified_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1738924915120-2" author="CTW04133">
+        <createTable tableName="t_rack">
+            <column name="id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="t_rack_pkey"/>
+            </column>
+            <column name="serial_number" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="team_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="created_at" type="timestamp"/>
+            <column name="default_location" type="VARCHAR(10)"/>
+            <column defaultValue="AVAILABLE" name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="modified_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1738924915120-3" author="CTW04133">
+        <createTable tableName="t_rack_asset">
+            <column name="id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="t_rack_asset_pkey"/>
+            </column>
+            <column name="asset_tag" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rack_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1738924915120-4" author="CTW04133">
+        <createTable tableName="t_team">
+            <column name="id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="t_team_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="modified_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="default_location" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1738924915120-5" author="CTW04133">
+        <createTable tableName="t_team_member">
+            <column name="id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="t_team_member_pkey"/>
+            </column>
+            <column name="team_id" type="char(36)"/>
+            <column name="ctw_id" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="modified_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1738924915120-6" author="CTW04133">
+        <addUniqueConstraint columnNames="serial_number" constraintName="uniqueserialnumber" tableName="t_rack"/>
+    </changeSet>
+    <changeSet id="1738924915120-7" author="CTW04133">
+        <addForeignKeyConstraint baseColumnNames="rack_id" baseTableName="t_booking"
+                                 constraintName="t_booking_rack_id_fkey" onDelete="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="t_rack"/>
+    </changeSet>
+    <changeSet id="1738924915120-8" author="CTW04133">
+        <addForeignKeyConstraint baseColumnNames="requester_id" baseTableName="t_booking"
+                                 constraintName="t_booking_requester_id_fkey" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="t_team_member"/>
+    </changeSet>
+    <changeSet id="1738924915120-9" author="CTW04133">
+        <addForeignKeyConstraint baseColumnNames="rack_id" baseTableName="t_rack_asset"
+                                 constraintName="t_rack_asset_rack_id_fkey" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="t_rack"/>
+    </changeSet>
+    <changeSet id="1738924915120-10" author="CTW04133">
+        <addForeignKeyConstraint baseColumnNames="team_id" baseTableName="t_team_member"
+                                 constraintName="t_team_member_team_id_fkey" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="t_team"/>
+    </changeSet>
+
+</databaseChangeLog>

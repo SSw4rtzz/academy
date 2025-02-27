@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://dev.azure.com/CriticalTechworks/Academy-Java-Fullstack/_git/modules-exercices?path=/05-databases-jpa/05-02-jpa/examples/workstation-rack/src/main/resources/import.sql&version=GBoop-java-rack-application-solution
+HostUrl=https://dev.azure.com/CriticalTechworks/889b82fe-7853-43d8-a5e3-78e58c76ea63/_apis/git/repositories/685671c6-c8d4-4d6c-a912-089d5993c31b/items?path=/05-databases-jpa/05-02-jpa/examples/workstation-rack/src/main/resources/application.properties&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=oop-java-rack-application-solution&resolveLfs=true&%24format=octetStream&api-version=5.0&download=true

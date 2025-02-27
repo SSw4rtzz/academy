@@ -1,0 +1,13 @@
+name: Build Docker image
+description: 'Build a Docker image for the app'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Build app image
+      run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
+      shell: bash
+
+    - name: List images
+      run: docker images
+      shell: bash

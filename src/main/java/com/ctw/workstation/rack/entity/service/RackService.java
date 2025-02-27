@@ -71,7 +71,7 @@ public class RackService {
         if (updatedRack.getStatus() != null) {
             existingRack.setStatus(updatedRack.getStatus());
         }
-        //existingRack.setTeam_id(updatedRack.getTeam_id());
+        //existingRack.setTeam_id(updatedRack.getTeam_id()); T
 
         rackRepository.merge(existingRack);
         return existingRack;
